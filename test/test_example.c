@@ -9,11 +9,11 @@ void tearDown(void)
 {
 }
 
-void test_foo_init_should_initialize_multiplier()
+void test_taskFunction_should_return_1()
 {
     int i = taskFunction(7);
 
-    TEST_ASSERT_FALSE(1);
+    TEST_ASSERT(i == 1);
 }
 
 
