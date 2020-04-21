@@ -52,7 +52,7 @@ Running the tests should result in something that resembles this:
     --------------------------
     UNITY FAILED TEST SUMMARY
     --------------------------
-    .\test\test_example.c:16:test_foo_init_should_initialize_multiplier:FAIL: Expected FALSE Was TRUE
+    .\test\test_example.c:16:test_taskFunction_should_return_1:FAIL: Expression Evaluated To FALSE
     --------------------------
     OVERALL UNITY TEST SUMMARY
     --------------------------
