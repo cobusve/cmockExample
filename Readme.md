@@ -23,13 +23,37 @@ The application can be built using the following command line:
 The supplied makefile has targets to clean, run the app, generate the mocks and run the tests.
 
 The default will do all of the above and run the app at the end:
+
     make all
 
-The "setup" target will generate the helper makefiles for generating and compiling the mocks all behind the scenes by using the cmock ruby script create_makefile.rb. This only needs to run once every time you add new files to your project.
+The "setup" target will generate the helper makefiles for generating and compiling the mocks all behind the scenes by using the cmock ruby script create_makefile.rb. This only needs to run once for the repo. 
+
+As the generated MakefileTestSupport file is included into this makefile when found you need to run setup before you can build and run the tests. If you forget this step the Makefile will run setup for you instead and build and run the tests on the second time you run it. You can make sure everything is set up by running
+
     make setup
 
-The "run" target will just run the application
+The "run" target will just run the application and not run any tests
+
     make run
 
 The "test" target imports the generated Makefile from it's location at this path ./build/test/MakefileTestSupport. This target as set up here will use the Unity framework to execute all of the tests in the "test" folder.
 
+You can just run the tests by using this make target.
+
+    make test
+
+
+Running the tests should result in something that resembles this:
+
+    mkdir -p ./build
+    mkdir -p ./build/obj
+    ruby ./cmock/scripts/create_makefile.rb --silent
+
+    --------------------------
+    UNITY FAILED TEST SUMMARY
+    --------------------------
+    .\test\test_example.c:16:test_foo_init_should_initialize_multiplier:FAIL: Expected FALSE Was TRUE
+    --------------------------
+    OVERALL UNITY TEST SUMMARY
+    --------------------------
+    1 TOTAL TESTS 1 TOTAL FAILURES 0 IGNORED
