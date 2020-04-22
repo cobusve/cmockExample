@@ -4,23 +4,49 @@ This is a basic example of how to run CMock from a makefile. It compiles main.c 
 
 # Getting Started
 
+First clone this repo. As cmock is included as a submodule you can do this in one easy step as follows:
+
+    git clone --recursive https://github.com/cobusve/cmockExample.git
+
+On Linux or MacOS the project should work with what comes with your machine. If you are on Windows I recommend using WSL (Windows Subsystem for Linux). The project uses make and if you try and use another make on Windows and installing gcc and all that you will just be inviting pain.
+
+## Windows Installation
+
+On Windows run "wsl" from the search bar.
+
+You probably need to install ruby, and if like me your wsl was out of date you will have to update apt doing the following. (you may need your wsl sudo password)
+
+    sudo apt-get update
+    sudo apt install ruby
+
+That is it, you should be set to go
+
+## Linux and MacOS installation
+
+You probably have what you need already. Test if you have ruby installed though. You can use brew or apt to install if you do not have it. To check run
+
+    ruby -v
+
+Not found? Then try one of these
+
+    apt install ruby
+
+or
+
+    brew install ruby
+
+
 ## Initial setup
 
-Before you start you will need to install Ruby form here https://www.ruby-lang.org/en/downloads/. You will not need the Devkit version to use this makefile but you may install it if you are interested in Ruby development yourself.
+Your git clone will contain a cmock folder which is pulling cmock from the official github location at https://github.com/ThrowTheSwitch/CMock. 
 
-Get Cmock and make sure you have the bundles you need:
+If you get ruby errors make sure that you have the bundles you need by changing into the cmock folder and running
 
-    git clone --recursive https://github.com/throwtheswitch/cmock.git
-    cd cmock
-    bundle install # Ensures you have all RubyGems needed
+    bundle install
 
 ## Building the example
 
-The application can be built using the following command line:
-
-    gcc -o app main.c example.c
-
-The supplied makefile has targets to clean, run the app, generate the mocks and run the tests.
+The supplied Makefile has targets to clean, run the app, generate the mocks and run the tests.
 
 The default will do all of the above and run the app at the end:
 
@@ -38,10 +64,15 @@ The "run" target will just run the application and not run any tests
 
 The "test" target imports the generated Makefile from it's location at this path ./build/test/MakefileTestSupport. This target as set up here will use the Unity framework to execute all of the tests in the "test" folder.
 
+The example is quite basic and can be built without the makefile as follows:
+
+    gcc -o app main.c example.c
+
+## Running the tests
+
 You can just run the tests by using this make target.
 
     make test
-
 
 Running the tests should result in something that resembles this:
 
