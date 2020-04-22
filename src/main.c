@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "example.h"
 
-int main(void)
+int real_main(int argc, char ** argv)
 {
     int i = 0;
 
@@ -10,3 +10,10 @@ int main(void)
 
     return 1;
 }
+
+#ifndef TEST
+int main(int argc, char ** argv)
+{
+    return real_main(argc, argv);
+}
+#endif

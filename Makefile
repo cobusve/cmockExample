@@ -10,7 +10,7 @@ OBJ_DIR = ${OBJ}
 
 default: all
 
-all: setup test ${BUILD_DIR}/main run
+all:  setup test ${BUILD_DIR}/main run
 
 setup:
 	mkdir -p ${BUILD_DIR}
@@ -20,16 +20,13 @@ setup:
 clean:
 	rm -rf ${BUILD_DIR}
 
-${BUILD_DIR}/main: ${SRC_DIR}/main.c ${OBJ_DIR}/example.o
-	${CC} $< -o $@ ${OBJ_DIR}/example.o
-
-${OBJ_DIR}/example.o: ./src/example.c
-	${CC} -o $@ -c $< ${TEST_CFLAGS} -I ${SRC_DIR} ${INCLUDE_PATH}
+${BUILD_DIR}/main: ${SRC_DIR}/main.c ${SRC_DIR}/example.c
+	${CC} $< -o $@ 
 
 run:
 	./build/main || true
 
-test: setup
+test:  setup
 
 -include ${TEST_MAKEFILE}
 
