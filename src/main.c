@@ -6,7 +6,7 @@ int real_main(int argc, char ** argv)
     int i = 0;
 
     printf("This is main!!!\r\n");
-    while( taskFunction(i++) == 1);
+    while( taskFunction(i++) == 66);
 
     return 1;
 }

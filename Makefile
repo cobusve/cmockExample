@@ -15,13 +15,13 @@ all:  setup test ${BUILD_DIR}/main run
 setup:
 	mkdir -p ${BUILD_DIR}
 	mkdir -p ${OBJ}
-	ruby ${CMOCK_DIR}/scripts/create_makefile.rb --silent
+	ruby ./utils/create_makefile.rb --silent
 
 clean:
 	rm -rf ${BUILD_DIR}
 
-${BUILD_DIR}/main: ${SRC_DIR}/main.c ${SRC_DIR}/example.c
-	${CC} $< -o $@ 
+${BUILD_DIR}/main: ${SRC_DIR}/main.c ${SRC_DIR}/example.o ${SRC_DIR}/library.o
+	${CC} -o $@ $^
 
 run:
 	./build/main || true
