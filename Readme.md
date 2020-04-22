@@ -4,6 +4,10 @@ This is a basic example of how to run CMock from a makefile. It compiles main.c 
 
 # Getting Started
 
+Make sure that you have changed to a folder where you want the project folder created (my WSL starts in System32!). I usually just do 
+    
+    cd ~
+
 First clone this repo. As cmock is included as a submodule you can do this in one easy step as follows:
 
     git clone --recursive https://github.com/cobusve/cmockExample.git
